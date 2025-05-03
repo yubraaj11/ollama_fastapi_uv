@@ -11,12 +11,14 @@ logger = logging.getLogger(__name__)
 class OllamaModel:
     def __init__(self, model_name: str = "qwen:1.8b"):
         self.model_name = model_name
-        
+
         # Make sure the model_name is not None before checking
         if self.model_name is not None:
             # Check if the model exists, and if not, try to pull it
             if not check_model(self.model_name):
-                logger.warning(f"Model {self.model_name} not available locally. Attempting to pull...")
+                logger.warning(
+                    f"Model {self.model_name} not available locally. Attempting to pull..."
+                )
                 # Add code to pull the model here
                 # You can uncomment the pull code in your check_model_async function
                 # Or implement a direct pull here:
@@ -26,7 +28,7 @@ class OllamaModel:
                     logger.info(f"Successfully pulled model {self.model_name}")
                 except Exception as e:
                     logger.error(f"Failed to pull model {self.model_name}: {e}")
-            
+
             # Initialize model after ensuring it exists (or after pull attempt)
             try:
                 self.model = ollama.Model(model_name)
@@ -35,7 +37,7 @@ class OllamaModel:
                 logger.error(f"Error loading model {self.model_name}: {e}")
         else:
             logger.error("No model name provided.")
-    
+
     def generate(self, user_message):
         """
         Generate a response using the Ollama model.
