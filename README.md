@@ -29,7 +29,7 @@ uv run main.py
 Or use the uvicorn runner directly:
 
 ```bash
-python -m uvicorn main:app --reload
+uvicorn main:app --reload
 ```
 
 ## Running Using Docker
