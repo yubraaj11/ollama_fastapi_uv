@@ -12,7 +12,7 @@ cd ollama_fastapi_uv
 
 b. Download packages
 ```bash
-uv sync --frozen
+uv sync
 ```
 
 c. Copy `.env.example` > `.env`
